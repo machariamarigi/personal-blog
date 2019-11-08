@@ -7,13 +7,22 @@ import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
+  {
+    path: 'home',
+    component: HomeComponent,
+    data: { routeState: 1 }
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+    data: { routeState: 2 }
+  },
   {
     path: 'post/:id/:slug',
     loadChildren: () => import('./post/post.module').then(
       m => m.PostModule
-    )
+    ),
+    data: { routeState: 3 }
   },
   { path: '**', component: HomeComponent },
 ];
